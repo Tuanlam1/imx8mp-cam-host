@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>i.MX8MP Camera Host</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:sans-serif;max-width:900px;margin:24px auto;padding:0 12px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+    .muted{color:#666;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ảnh mới nhất từ i.MX8MP</h1>
+    <div class="muted" id="ts"></div>
+  </header>
+  <img id="frame" alt="latest frame">
+  <script>
+    const img = document.getElementById('frame');
+    const tsTxt = document.getElementById('ts');
+    function refresh(){
+      const t = Date.now();
+      img.src = `images/latest.jpg?ts=${t}`;
+      tsTxt.textContent = new Date().toLocaleString();
+    }
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>
